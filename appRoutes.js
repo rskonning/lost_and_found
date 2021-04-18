@@ -19,9 +19,14 @@ app.set('views', './views');
 var loginC = require("./controller/loginController");
 var itemC = require("./controller/itemController");
 
+var routes = require('./routes/appRoutes');
+routes(app);
+
 app.route('/login')
             .get(loginC.getLogin)
             .post(loginC.checkCredentials);
+
+app.route('/logout').get(loginC.logout);
 
 app.route('/forgotPassword')
             .get(loginC.passwordForm)
@@ -30,8 +35,6 @@ app.route('/forgotPassword')
 app.route('/userNotFound').get(loginC.notFound);
 
 app.route('/resetSuccessful').post(loginC.resetPassword);
-
-app.route('/item').get(itemC.getAll);
 
 app.route('/guest').get(itemC.getAll);
 

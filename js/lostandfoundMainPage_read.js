@@ -2,7 +2,7 @@ $(document).ready(function() {
     alert("Document Loaded");
     // JS AJAX CODE HERE TO GET ALL THE TASKS
     let id=document.getElementById("itemArea");
-    let URL = "http://127.0.0.1:3000/item" //ToDo: get correct URL
+    let URL = "http://127.0.0.1:3333/item" //ToDo: get correct URL
     $.ajax({
         url: URL,
         headers: {'Access-Control-Allow-Origin':'*'}, // <-------- set this
@@ -29,8 +29,8 @@ $(document).ready(function() {
                 let dFound = data[i].date_found;
                 let dClaimed = data[i].date_claimed;
                 oStr += `<tr><td>${iId}</td><td>${item}</td><td>${cat}</td><td>${B}</td><td>${L}</td><td>${count}</td><td>${desc}</td><td>${pFound}</td><td>${pClaimed}</td><td>${dFound}</td><td>${dClaimed}</td>`;
-                oStr += `<td> <button type="button" class="btn btn-primary" onClick="deleteIt(${item})">Delete ${item} </button> </td>`;
-                oStr += `<td> <button type="button" class="btn btn-primary" onClick="updateIt(${item}, '${pClaimed}', '${dClaimed}')">Update ${item} </button> </td>`;
+                oStr += `<td> <form action="/item/${iId}/delete" method="get"> <button type="submit" class="btn btn-primary">Delete ${item} </button> </form> </td>`;
+                oStr += `<td> <form action="/item/${iId}" method="get"> <button type="submit" class="btn btn-primary">Update ${item} </button> </form> </td>`;
                 oStr += `</tr>`;
 
             }

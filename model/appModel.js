@@ -43,7 +43,8 @@ Item.getAllTask = function (result) {
             console.log("error: ", err);
             result(null, err);
         } else {
-            console.log('item : ', res);
+            //console.log('item : ', res);
+            res = JSON.parse(JSON.stringify(res));
             result(null, res);
         }
     });

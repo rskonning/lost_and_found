@@ -1,15 +1,31 @@
-'use strict';
+
 var Item = require('../model/appModel.js');
+const Person = require('../model/personModel.js');
 exports.list_all_items = function (req, res) {
     Item.getAllTask(function (err, item) {
-        console.log('controller')
+        //console.log('controller')
         if (err) res.send(err);
-        console.log('res', item);
-        res.send(item);
+        //console.log('res', item);
+        //res.send(item);
+        Person.getAll(function (err, people){
+            data = {
+                item : item,
+                people : people
+            }
+            if(req.session.admin == true){
+                res.render('home', data);
+            } else {
+                res.redirect('/login');
+            }
+        });
     });
 };
 exports.create = function(req, res){
-    res.render('homePageInsert3_30')
+    if(req.session.admin == true){
+        res.render('homePageInsert3_30');
+    } else {
+        res.redirect('/login');
+    }
 }
 exports.create_a_item = function (req, res) {
     var new_item = new Item(req.body);

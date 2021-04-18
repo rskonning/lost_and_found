@@ -9,8 +9,8 @@ module.exports = function (app) {
     app.route('/item/create')
         .get(itemList.create);
 
-    app.route('/item/:itemid')
+    /*app.route('/item/:itemid')
         .get(itemList.read_a_item)
         .put(itemList.update_a_item)
-        .delete(itemList.delete_a_item);
+        .delete(itemList.delete_a_item);*/
 };

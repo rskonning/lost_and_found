@@ -22,7 +22,11 @@ exports.getItem = function(req, res){
                 item : item[0],
                 people : people
             }
-            res.render('updateItem', data);
+            if(req.session.admin == true){
+                res.render('updateItem', data);
+            } else {
+                res.redirect('/login');
+            }
         });
     });
 };
@@ -43,7 +47,11 @@ exports.deleteForm = function(req, res){
             item : item[0],
             id : req.params.id
         }
-        res.render('deleteItem', data);
+        if(req.session.admin == true){
+            res.render('deleteItem', data);
+        } else {
+            res.redirect('/login');
+        }
     });
 };
 

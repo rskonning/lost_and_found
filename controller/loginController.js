@@ -6,6 +6,11 @@ exports.getLogin = function(req, res){
     res.render('login');
 };
 
+exports.logout = function(req, res){
+    req.session.admin = false;
+    res.redirect('/login');
+};
+
 exports.checkCredentials = function(req, res){
     User.getAll(function(err, users){
         users.forEach(function(user, index){
